@@ -5,12 +5,15 @@ interface Buttons {
   text: string;
   btnColor: Object;
   icons: ReactElement;
+  onPress?: () => void;
 }
 
 export default function ButtonCustom(Props: Buttons) {
   return (
-    <TouchableOpacity style={[styles.Btn, Props.btnColor]}>
-      {/* <Google width={40} height={30} /> */}
+    <TouchableOpacity
+      style={[styles.Btn, Props.btnColor]}
+      onPress={Props.onPress}
+    >
       {Props.icons}
       <Text style={styles.BtnText}>{Props.text}</Text>
     </TouchableOpacity>

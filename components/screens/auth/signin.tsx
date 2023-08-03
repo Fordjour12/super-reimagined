@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Email from "../../../assets/images/email-envelope-letter-message-fast-svgrepo-com.svg";
 import Facebook from "../../../assets/images/facebook-svgrepo-com.svg";
@@ -18,12 +12,12 @@ export default function SignIn(Props) {
   const ImageSource = require("../../../assets/images/house-1.jpg");
 
   return (
-    <ImageBackground source={ImageSource} style={styles.container}>
-      <View style={styles.overlay}>
+    <ImageBackground source={ImageSource} style={GlobalConstant.container}>
+      <View style={GlobalConstant.overlay}>
         <SafeAreaView>
           <View style={{ marginVertical: "25%" }}>
-            <Text style={styles.heading}>Reazl Heaven</Text>
-            <Text style={styles.sub_intro}>
+            <Text style={GlobalConstant.heading}>Reazl Heaven</Text>
+            <Text style={GlobalConstant.sub_intro}>
               The best place to find millions of homes, apartments,condos and
               rental listings
             </Text>
@@ -50,6 +44,7 @@ export default function SignIn(Props) {
                   text="continue with Email"
                   btnColor={GlobalConstant.email}
                   icons={<Email width={40} height={30} />}
+                  onPress={() => Props.navigation.navigate("SignInEmail")}
                 />
               </View>
 
@@ -60,16 +55,17 @@ export default function SignIn(Props) {
                   alignItems: "center",
                 }}
               >
-                <Text style={styles.account}>Don't have an Account? </Text>
+                <Text style={GlobalConstant.account}>
+                  Don't have an Account?{" "}
+                </Text>
                 <TouchableOpacity
                   onPress={() => Props.navigation.navigate("SignUp")}
                   delayPressIn={0}
                 >
-                  <Text style={[styles.account, GlobalConstant.blue]}>
+                  <Text style={[GlobalConstant.account, GlobalConstant.blue]}>
                     Sign Up
                   </Text>
                 </TouchableOpacity>
-                {/* <Button title="login" onPress={() => Props.navigation.navigate("SignUp")} /> */}
               </View>
             </>
           }
@@ -78,40 +74,6 @@ export default function SignIn(Props) {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  heading: {
-    fontSize: 70,
-    color: "white",
-    fontFamily: "GBold",
-  },
-  overlay: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "hsla(0,0%,0%/.60)",
-    width: "100%",
-  },
-  sub_intro: {
-    fontSize: 18,
-    paddingTop: 10,
-    color: "white",
-    fontFamily: "GSemiBold",
-  },
-  login_bg: {
-    backgroundColor: "black",
-    width: "100%",
-  },
-  account: {
-    fontFamily: "GSemiBold",
-    fontSize: 18,
-  },
-});
 
 // 220E5C => color
 // 1DE9B6 => color
