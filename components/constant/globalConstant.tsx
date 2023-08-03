@@ -10,4 +10,7 @@ export default StyleSheet.create({
   email: {
     backgroundColor: "black",
   },
+  blue: {
+    color: "#060d11",
+  },
 });
