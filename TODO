@@ -1,0 +1,33 @@
+Reazl Haven:
+    ✔ config firebase @done(23-08-09 17:11)
+    ☐ put firebase config list in env
+    ☐ make sure they are not in version control
+    sign in with an Email:
+        ✔ Header @done(23-08-09 17:10)
+        ✔ sign in text @done(23-08-09 17:11)
+        ✔ signin with an Email @done(23-08-09 17:12)
+    sign up with email:
+        ✔ Desgin the signup page @done(23-08-09 17:12)
+        ✔ Sign up with email @done(23-08-09 17:13)
+        ✔ add user to firestore database @done(23-08-13 01:08)
+    shared preference:
+        ☐ install shared preference dependencies
+        ☐ save user name/email  
+        ☐ show user name/email when user is relogin in
+        ☐ keep name uptodate
+    bottom navigation:
+        ✔ set up  the navigation links @done(23-08-18 03:07)
+        ✔ download icons to suit @done(23-08-18 03:07)
+        ☐ change navigation color
+
+    theme:
+        ☐ light and dark mode 
+
+    more infomation about yourself/your company
+    how your will accquire your emails
+    types of email to be sent to users provide example
+
+
+    
+
+        

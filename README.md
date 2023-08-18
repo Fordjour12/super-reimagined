@@ -1,1 +1,3 @@
-# super-reeimagined
+# Super Re-imagined
+
+## Project Start
