@@ -1,9 +1,15 @@
 import React from "react";
-import { KeyboardTypeOptions, StyleSheet, TextInput } from "react-native";
+import {
+  KeyboardTypeOptions,
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInput,
+  TextInputFocusEventData,
+} from "react-native";
 
 interface Input {
-  onChange: () => void;
-  onBlur: () => void;
+  onChange: (text: string) => void;
+  onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   value: string;
   placeholder: string;
   keyboardType?: KeyboardTypeOptions;
@@ -23,6 +29,7 @@ export default function InputCustom(Props: Input) {
       autoComplete={Props.autoComplete}
       keyboardType={Props.keyboardType}
       secureTextEntry={Props.secureTextEntry}
+      value={Props.value}
     />
   );
 }
@@ -36,6 +43,5 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontFamily: "GSemiBold",
     fontSize: 17,
-    
   },
 });

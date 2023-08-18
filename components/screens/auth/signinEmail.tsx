@@ -1,8 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useAuthContext } from "../../../context/authContext/createAuth.context";
 import FormLayout from "../../designs/form.layout";
 
 export default function SigninEmail() {
+  const { currentUser, onLogin } = useAuthContext();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={{ justifyContent: "flex-start" }}>
@@ -24,6 +27,7 @@ export default function SigninEmail() {
           }}
         >
           Welcome back {"name"}
+          {/* name => from shared preferences  */}
         </Text>
         <Text
           style={{ paddingVertical: 10, fontFamily: "GMedium", fontSize: 18 }}
@@ -32,7 +36,41 @@ export default function SigninEmail() {
         </Text>
       </View>
 
-      <FormLayout />
+      <FormLayout
+        onSubmit={(value: { email: string; password: string }) =>
+          onLogin(value.email, value.password).catch((error) =>
+            console.log(error)
+          )
+        }
+        children={
+          <View
+            style={{
+              flexDirection: "row",
+              paddingVertical: 10,
+            }}
+          >
+            <BouncyCheckbox
+              // disableBuiltInState
+              size={17}
+              fillColor="gray"
+              // isChecked={rememberMe}
+              // onPress={() => setRememberMe(!rememberMe)}
+            />
+            <Text style={styles.remember}>Remember me</Text>
+          </View>
+        }
+      />
     </View>
   );
 }
+const styles = StyleSheet.create({
+  form: {
+    width: "100%",
+    paddingHorizontal: 16,
+  },
+  remember: {
+    color: "hsl(0,0%,0%)",
+    fontFamily: "GMedium",
+    fontSize: 17,
+  },
+});

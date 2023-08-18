@@ -1,72 +1,75 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { validationSchema } from "../../hooks/schemaValidation";
+import globalConstant from "../constant/globalConstant";
 import InputCustom from "./input.custom";
 
-export default function FormLayout() {
+interface CustomForm {
+  children?:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal;
+  onSubmit: any;
+}
+
+export default function FormLayout(Props: CustomForm) {
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+
   return (
     <View style={styles.form}>
       <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
-            console.log(`data: {${values.email}, ${values.password}}`);
-          }}
+          onSubmit={Props.onSubmit}
         >
           {({
-            values,
-            errors,
-            touched,
             handleChange,
             handleBlur,
             handleSubmit,
-            isSubmitting,
-            /* and other goodies */
+            values,
+            touched,
+            errors,
+            isValid,
           }) => (
-            <View>
+            <>
               <InputCustom
-                placeholder="James Bond"
-                onChange={() => handleBlur("email")}
-                onBlur={() => handleBlur("email")}
-                value={values.email}
                 autoComplete={"email"}
-                keyboardType="email-address"
+                onBlur={handleBlur("email")}
+                onChange={handleChange("email")}
+                placeholder="email"
                 secureTextEntry={false}
+                value={values.email}
+                keyboardType="email-address"
               />
-              {errors.email && touched.email && errors.email}
+              {errors.email && touched.email && (
+                <Text style={globalConstant.red}>{errors.email}</Text>
+              )}
 
               <InputCustom
                 placeholder="P@55word"
-                onChange={() => handleBlur("password")}
-                onBlur={() => handleBlur("password")}
+                onChange={handleChange("password")}
+                onBlur={handleBlur("password")}
                 value={values.password}
                 autoComplete={"current-password"}
                 secureTextEntry={true}
               />
-              {errors.password && touched.password && errors.password}
 
-              <View
-                style={{
-                  flexDirection: "row",
-                  paddingVertical: 10,
-                }}
-              >
-                <BouncyCheckbox
-                  disableBuiltInState
-                  size={17}
-                  fillColor="gray"
-                  isChecked={rememberMe}
-                  onPress={() => setRememberMe(!rememberMe)}
-                />
-                <Text style={styles.remember}>Remember me</Text>
-              </View>
-              <Button onPress={() => handleSubmit} title="Submit" />
-            </View>
+              {errors.password && touched.password && (
+                <Text style={globalConstant.red}>{errors.password}</Text>
+              )}
+              {Props.children}
+              <Button
+                disabled={!isValid}
+                onPress={() => handleSubmit()}
+                title="Submit"
+              />
+            </>
           )}
         </Formik>
       </KeyboardAwareScrollView>

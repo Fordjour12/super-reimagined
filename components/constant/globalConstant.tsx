@@ -13,7 +13,13 @@ export default StyleSheet.create({
   blue: {
     color: "#060d11",
   },
-
+  red: {
+    color: "red",
+    fontSize: 14,
+    fontFamily: "GSemiBold",
+    textTransform: "capitalize",
+    paddingVertical: 10,
+  },
   container: {
     flex: 1,
     justifyContent: "center",
