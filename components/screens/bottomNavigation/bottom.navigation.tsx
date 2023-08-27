@@ -1,4 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
+import Homepage from "../views/homepage";
 import AccountIcon from "../../../assets/images/bt-acc.svg";
 import DiscoveryIcon from "../../../assets/images/bt-disco.svg";
 import FavoriteIcon from "../../../assets/images/bt-fav.svg";
@@ -7,7 +9,6 @@ import InboxIcon from "../../../assets/images/btn-mess.svg";
 import Account from "../views/account";
 import Discovery from "../views/discovery";
 import Favorites from "../views/favorites";
-import Homepage from "../views/homepage";
 import Inbox from "../views/inbox";
 
 const BottomNavigation = createBottomTabNavigator();
@@ -15,7 +16,7 @@ const BottomNavigation = createBottomTabNavigator();
 const BottomTab = () => {
   return (
     <BottomNavigation.Navigator
-      initialRouteName="account"
+      initialRouteName="homepage"
       screenOptions={{
         tabBarActiveBackgroundColor: "gray",
         tabBarShowLabel: false,
@@ -28,7 +29,7 @@ const BottomTab = () => {
         options={{
           title: "Home",
           tabBarIcon: () => {
-            return <HomeIcon width={30} style={{ opacity: 0.7 }} />;
+            return <HomeIcon width={30} height={30} style={{ opacity: 0.7 }} />;
           },
         }}
       />
@@ -38,7 +39,9 @@ const BottomTab = () => {
         options={{
           title: "Favorites",
           tabBarIcon: () => {
-            return <FavoriteIcon width={30} style={{ opacity: 0.7 }} />;
+            return (
+              <FavoriteIcon width={30} height={30} style={{ opacity: 0.7 }} />
+            );
           },
         }}
       />
@@ -48,7 +51,9 @@ const BottomTab = () => {
         options={{
           title: "Discovery",
           tabBarIcon: () => {
-            return <DiscoveryIcon width={30} style={{ opacity: 0.7 }} />;
+            return (
+              <DiscoveryIcon width={30} height={30} style={{ opacity: 0.7 }} />
+            );
           },
         }}
       />
@@ -58,7 +63,9 @@ const BottomTab = () => {
         options={{
           title: "Inbox",
           tabBarIcon: () => {
-            return <InboxIcon width={30} style={{ opacity: 0.7 }} />;
+            return (
+              <InboxIcon width={30} height={30} style={{ opacity: 0.7 }} />
+            );
           },
         }}
       />
@@ -68,7 +75,9 @@ const BottomTab = () => {
         options={{
           title: "Account",
           tabBarIcon: () => {
-            return <AccountIcon width={30} style={{ opacity: 0.7 }} />;
+            return (
+              <AccountIcon width={30} height={30} style={{ opacity: 0.7 }} />
+            );
           },
         }}
       />

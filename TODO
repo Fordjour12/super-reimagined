@@ -1,7 +1,12 @@
 Reazl Haven:
     ✔ config firebase @done(23-08-09 17:11)
-    ☐ put firebase config list in env
-    ☐ make sure they are not in version control
+    ✔ put firebase config list in env @done(23-08-19 18:42)
+    ✔ make sure they are not in version control @done(23-08-19 18:42)
+    ☐ button should be disable onPress
+
+    Refactor:
+        ☐ refactor the bottom navigation code
+
     sign in with an Email:
         ✔ Header @done(23-08-09 17:10)
         ✔ sign in text @done(23-08-09 17:11)
@@ -18,14 +23,12 @@ Reazl Haven:
     bottom navigation:
         ✔ set up  the navigation links @done(23-08-18 03:07)
         ✔ download icons to suit @done(23-08-18 03:07)
-        ☐ change navigation color
-
+        ✔ change navigation color @done(23-08-19 18:42)
     theme:
         ☐ light and dark mode 
+    
 
-    more infomation about yourself/your company
-    how your will accquire your emails
-    types of email to be sent to users provide example
+
 
 
     

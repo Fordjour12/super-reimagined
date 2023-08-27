@@ -1,9 +1,10 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { validationSchema } from "../../hooks/schemaValidation";
 import globalConstant from "../constant/globalConstant";
+import ButtonCustom from "./button.custom";
 import InputCustom from "./input.custom";
 
 interface CustomForm {
@@ -64,10 +65,11 @@ export default function FormLayout(Props: CustomForm) {
                 <Text style={globalConstant.red}>{errors.password}</Text>
               )}
               {Props.children}
-              <Button
+              <ButtonCustom
+                btnColor={globalConstant.email}
+                text="submit"
                 disabled={!isValid}
                 onPress={() => handleSubmit()}
-                title="Submit"
               />
             </>
           )}

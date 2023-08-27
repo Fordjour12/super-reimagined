@@ -22,28 +22,16 @@ export const Layout = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="SignIn"
-          screenOptions={{ headerShown: false,animation:"none" }}
+          screenOptions={{ headerShown: false, animation: "none" }}
         >
           {currentUser ? (
-            <Stack.Screen
-              name="Index"
-              component={Index}
-            />
+            <Stack.Screen name="Index" component={Index} />
           ) : (
             <Stack.Group>
               <Stack.Screen name="SignIn" component={SignIn} />
-              <Stack.Screen
-                name="SignUp"
-                component={SignUp}
-              />
-              <Stack.Screen
-                name="SignInEmail"
-                component={SigninEmail}
-              />
-              <Stack.Screen
-                name="SignUpEmail"
-                component={SignupEmail}
-              />
+              <Stack.Screen name="SignUp" component={SignUp} />
+              <Stack.Screen name="SignInEmail" component={SigninEmail} />
+              <Stack.Screen name="SignUpEmail" component={SignupEmail} />
             </Stack.Group>
           )}
         </Stack.Navigator>

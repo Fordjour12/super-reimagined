@@ -5,7 +5,7 @@ import { useAuthContext } from "../../../context/authContext/createAuth.context"
 import FormLayout from "../../designs/form.layout";
 
 export default function SigninEmail() {
-  const { currentUser, onLogin } = useAuthContext();
+  const { onLogin } = useAuthContext();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={{ justifyContent: "flex-start" }}>
@@ -50,11 +50,8 @@ export default function SigninEmail() {
             }}
           >
             <BouncyCheckbox
-              // disableBuiltInState
               size={17}
               fillColor="gray"
-              // isChecked={rememberMe}
-              // onPress={() => setRememberMe(!rememberMe)}
             />
             <Text style={styles.remember}>Remember me</Text>
           </View>
