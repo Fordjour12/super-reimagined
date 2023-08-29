@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "JamesTown Lipo",
+    "Price": "$7704853.41",
+    "Address": "928 Emmet Lane",
+    "Year built": 2008,
+    "packing slot": 2,
+    "Property Type": "Single Family Residential",
+    "images": {
+      "1": "http://dummyimage.com/130x100.png/5fa2dd/ffffff",
+      "2": "http://dummyimage.com/199x100.png/cc0000/ffffff",
+      "3": "http://dummyimage.com/170x100.png/dddddd/000000",
+      "4": "https://images.pexels.com/photos/3825673/pexels-photo-3825673.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    "Descrption": "Traumatic hemorrhage of left cerebrum with loss of consciousness of 31 minutes to 59 minutes, sequela",
+    "feature": {
+      "rooms": 3,
+      "shower": 2,
+      "sq.ft": 13068
+    }
+  }
+]

@@ -2,6 +2,7 @@ import {
   User,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -18,6 +19,7 @@ const AuthenticationProvider = ({ children }) => {
   const db = Firebase_db;
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      // setLoading(true);
       if (user) {
         setCurrentUser(user);
       } else {
@@ -46,10 +48,12 @@ const AuthenticationProvider = ({ children }) => {
       );
       console.log(response.user);
 
+      if (response.user.emailVerified === false) {
+        sendEmailVerification(response.user);
+      }
       const data = await setDoc(doc(db, "users", response.user.uid), {
         data: JSON.stringify(response.user),
       });
-      console.log("data", data);
     } catch (error) {
       console.log(error);
     }

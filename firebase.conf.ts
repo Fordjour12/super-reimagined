@@ -17,7 +17,6 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_APPID,
   measurementId: process.env.EXPO_PUBLIC_MESSAGINGSENDERID,
 };
-
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);

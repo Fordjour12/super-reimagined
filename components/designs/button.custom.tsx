@@ -4,8 +4,9 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 interface Buttons {
   text: string;
   btnColor: Object;
-  icons: ReactElement;
+  icons?: ReactElement;
   onPress?: () => void;
+  disabled?: boolean;
 }
 
 export default function ButtonCustom(Props: Buttons) {
@@ -13,6 +14,7 @@ export default function ButtonCustom(Props: Buttons) {
     <TouchableOpacity
       style={[styles.Btn, Props.btnColor]}
       onPress={Props.onPress}
+      disabled={Props.disabled}
     >
       {Props.icons}
       <Text style={styles.BtnText}>{Props.text}</Text>
