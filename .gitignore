@@ -38,3 +38,5 @@ yarn-error.*
 PitchDeck.md
 IAM.md
 %ProgramData%/**
+pnpm-lock.*
+package-lock.*

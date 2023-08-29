@@ -80,6 +80,7 @@ const Homepage = () => {
         alwaysBounceHorizontal={true}
         bounces={true}
         decelerationRate={"fast"}
+
       >
         <Text style={{ fontFamily: "GBold", fontSize: 24 }}>Popular</Text>
 

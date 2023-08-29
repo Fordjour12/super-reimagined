@@ -1,5 +1,9 @@
+import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import data from "../../assets/data.json";
+import Bed from "../../assets/images/bed.svg";
+import Location from "../../assets/images/location-pin.svg";
+import Shower from "../../assets/images/shower.svg";
 
 type Card = {
   Price: string;
@@ -30,9 +34,10 @@ const card = () => {
               borderTopRightRadius: 30,
               borderTopLeftRadius: 30,
               marginBottom: 7,
+              objectFit: "contain",
             }}
             source={{
-              uri: datalist.images[2],
+              uri: datalist.images[4],
             }}
             // width={40}
             height={250}
@@ -57,12 +62,29 @@ const card = () => {
               </Text>
 
               <View style={{ flexDirection: "row" }}>
-                <Text>s:{datalist.feature["shower"]}</Text>
-                <Text>b:{datalist.feature["rooms"]}</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingRight: 5,
+                  }}
+                >
+                  <Shower width={30} height={25} />
+                  <Text>{datalist.feature["shower"]}</Text>
+                </View>
+
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Bed width={30} height={25} />
+                  <Text>{datalist.feature["rooms"]}</Text>
+                </View>
               </View>
             </View>
-
-            <Text>{datalist.Address}</Text>
+            <View>
+              <View>
+                <Location width={30} height={25} />
+                <Text>{datalist.Address}</Text>
+              </View>
+            </View>
           </View>
         </View>
       ))}
