@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import data from "../../assets/data.json";
 import Bed from "../../assets/images/bed.svg";
 import Location from "../../assets/images/location-pin.svg";
@@ -28,7 +28,7 @@ const card = () => {
   return (
     <View style={{ marginVertical: 10 }}>
       {data.map((datalist) => (
-        <View>
+        <Pressable onPress={() => console.log("Apartment pressed")}>
           <Image
             style={{
               borderTopRightRadius: 30,
@@ -74,19 +74,19 @@ const card = () => {
                 </View>
 
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Bed width={30} height={25} />
+                  <Bed width={25} height={25} />
                   <Text>{datalist.feature["rooms"]}</Text>
                 </View>
               </View>
             </View>
             <View>
-              <View>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Location width={30} height={25} />
                 <Text>{datalist.Address}</Text>
               </View>
             </View>
           </View>
-        </View>
+        </Pressable>
       ))}
     </View>
   );
