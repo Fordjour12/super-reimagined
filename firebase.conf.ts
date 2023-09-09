@@ -18,6 +18,15 @@ import { getFirestore } from "firebase/firestore";
 //   measurementId: process.env.EXPO_PUBLIC_MESSAGINGSENDERID,
 // };
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDNqebZ_SUVVZiUrp5Le1_CY8Ao7lAfQI8",
+  authDomain: "com-thephantomdev.firebaseapp.com",
+  projectId: "com-thephantomdev",
+  storageBucket: "com-thephantomdev.appspot.com",
+  messagingSenderId: "868110718852",
+  appId: "1:868110718852:web:1ee635de438cff27cdafd1",
+  measurementId: "G-XFSRDL4YSC",
+};
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

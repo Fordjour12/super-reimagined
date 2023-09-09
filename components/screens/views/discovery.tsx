@@ -9,14 +9,19 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DiscoveryIcon from "../../../assets/images/bt-disco.svg";
-import Card from "../../designs/card";
+import DiscoveryCard from "../../designs/discoveryCard";
 
 const image = require("../../../assets/images/discov-2.jpg");
 
 const Discovery = () => {
   const inset = useSafeAreaInsets();
   return (
-    <ScrollView style={{ backgroundColor: "hsla(260, 53%, 10%,0.5)", flex: 1 }}>
+    <View
+      style={{
+        backgroundColor: "hsl(225, 37%, 94%)",
+        flex: 1,
+      }}
+    >
       <ImageBackground source={image} style={{ height: 400, width: "100%" }}>
         <View
           style={{
@@ -27,7 +32,7 @@ const Discovery = () => {
           }}
         />
 
-        <View style={{ paddingTop: 100, zIndex: 10, paddingHorizontal: 16 }}>
+        <View style={{ paddingTop: 90, zIndex: 10, paddingHorizontal: 16 }}>
           {/*  backicon with title on discovery */}
           <Text
             style={{
@@ -61,7 +66,31 @@ const Discovery = () => {
           </View>
         </View>
       </ImageBackground>
-      <View>
+      <View
+        style={{
+          width: "90%",
+          height: 200,
+          //  bgcolor => hsl(225,39%,99%)
+          backgroundColor: "hsla(0, 0%, 20%,0.7)",
+          zIndex: 10,
+          position: "absolute",
+          top: "35%",
+          alignSelf: "center",
+          borderRadius: 12,
+          paddingHorizontal: 16,
+          paddingVertical: 12,
+        }}
+      >
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text>Recent Searches</Text>
+          {/* see all -> button */}
+          <Text>Sell All</Text>
+        </View>
+        <View>
+          <Text>home searches here</Text>
+        </View>
+      </View>
+      <View style={{ position: "relative" }}>
         <Text style={{ fontSize: 25, fontFamily: "GBold", marginTop: 70 }}>
           Recommended for you
         </Text>
@@ -71,21 +100,21 @@ const Discovery = () => {
           showsHorizontalScrollIndicator={false}
           style={{ paddingHorizontal: 10 }}
         >
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
-          <Card />
+          <DiscoveryCard />
           <View style={{ paddingHorizontal: 10 }} />
         </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
