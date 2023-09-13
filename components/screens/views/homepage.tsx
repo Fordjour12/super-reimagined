@@ -1,44 +1,51 @@
-import { collection, onSnapshot } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DiscoveryIcon from "../../../assets/images/bt-disco.svg";
-import { Firebase_db } from "../../../firebase.conf";
+import NotificationIcon from "../../../assets/images/notification.svg";
+import ApartmentButton from "../../designs/apartment.button";
 import Card from "../../designs/card";
 
 const Homepage = () => {
   const inset = useSafeAreaInsets();
-  const [dataList, setDataList] = useState<any[]>([]);
+  // const [dataList, setDataList] = useState<any[]>([]);
 
-  const getAllDBData = async () => {
-    const db = Firebase_db;
+  // const getAllDBData = async () => {
+  //   const db = Firebase_db;
 
-    const docRef = collection(db, "building");
-    onSnapshot(docRef, {
-      next(snapshot) {
-        const docItem: any[] = [];
-        snapshot.docs.forEach((docData) => {
-          docItem.push({
-            id: docData.id,
-            // items: docData.data(),
-            ...docData.data(),
-          });
-        });
-        console.log("docItem", docItem);
-        setDataList(docItem);
-      },
-    });
-  };
+  //   const docRef = collection(db, "building");
+  //   onSnapshot(docRef, {
+  //     next(snapshot) {
+  //       const docItem: any[] = [];
+  //       snapshot.docs.forEach((docData) => {
+  //         docItem.push({
+  //           id: docData.id,
+  //           // items: docData.data(),
+  //           ...docData.data(),
+  //         });
+  //       });
+  //       console.log("docItem", docItem);
+  //       setDataList(docItem);
+  //     },
+  //   });
+  // };
 
-  useEffect(() => {
-    return () => {
-      getAllDBData();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     getAllDBData();
+  //   };
+  // }, []);
 
   return (
     <View style={{ paddingTop: inset.top, marginHorizontal: 16 }}>
-      <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "flex-start",
+          marginVertical: 16,
+          justifyContent: "space-between",
+        }}
+      >
         <Text
           style={{
             textTransform: "capitalize",
@@ -50,9 +57,8 @@ const Homepage = () => {
           Find your best real estate
         </Text>
 
-        <Text>Icons</Text>
+        <NotificationIcon width={60} height={25} />
       </View>
-
       <View>
         <View
           style={{
@@ -61,6 +67,7 @@ const Homepage = () => {
             paddingVertical: 10,
             borderWidth: 2,
             borderColor: "gary",
+            borderRadius: 10,
           }}
         >
           <DiscoveryIcon width={30} height={20} style={{ marginRight: 5 }} />
@@ -71,18 +78,30 @@ const Homepage = () => {
           />
         </View>
 
-        <View style={{ paddingVertical: 16 }}>
-          <Text>4 button here use TouchableOpacitywithoutfeedback </Text>
+        <View>
+          <ScrollView
+            horizontal
+            style={{ paddingVertical: 16 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            <ApartmentButton ApartmentType="condos" />
+            <ApartmentButton ApartmentType="Apartment" />
+            <ApartmentButton ApartmentType="condos" />
+            <ApartmentButton ApartmentType="condos" />
+            <ApartmentButton ApartmentType="condos" />
+            <ApartmentButton ApartmentType="condos" />
+            <ApartmentButton ApartmentType="Residential" />
+          </ScrollView>
         </View>
       </View>
-
       <ScrollView
         alwaysBounceHorizontal={true}
         bounces={true}
         decelerationRate={"fast"}
-
       >
-        <Text style={{ fontFamily: "GBold", fontSize: 24 }}>Popular</Text>
+        <Text style={{ fontFamily: "GBold", fontSize: 24, marginBottom: 16 }}>
+          Popular
+        </Text>
 
         {/* {dataList.map((i) => (
           <View>

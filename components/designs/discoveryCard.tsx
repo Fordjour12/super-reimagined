@@ -1,11 +1,8 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import data from "../../assets/data.json";
-import Bed from "../../assets/images/bed.svg";
-import Location from "../../assets/images/location-pin.svg";
-import Shower from "../../assets/images/shower.svg";
 
-type Card = {
+type DiscoveryCard = {
   Price: string;
   Address: string;
   "Year built": number;
@@ -24,7 +21,7 @@ type Card = {
   };
 };
 
-const card = () => {
+const discoveryCard = () => {
   return (
     <View style={{ marginVertical: 10 }}>
       {data.map((datalist) => (
@@ -39,12 +36,24 @@ const card = () => {
             source={{
               uri: datalist.images[4],
             }}
-            // width={40}
-            height={250}
+            height={180}
           />
           <View>
-            <View style={{ flexDirection: "row" }}>
-              <Text>{datalist.Price}/year</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  color: "hsl(100,100%,10%)",
+                  fontFamily: "GBold",
+                  fontSize: 19,
+                }}
+              >
+                {datalist.Price}/year
+              </Text>
               <Text style={{ marginHorizontal: 3 }}>|</Text>
               <Text>{datalist["Property Type"]}</Text>
             </View>
@@ -60,30 +69,6 @@ const card = () => {
               <Text style={{ fontFamily: "GBold", fontSize: 25 }}>
                 {datalist.Name}
               </Text>
-
-              <View style={{ flexDirection: "row" }}>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingRight: 5,
-                  }}
-                >
-                  <Shower width={30} height={25} />
-                  <Text>{datalist.feature["shower"]}</Text>
-                </View>
-
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Bed width={25} height={25} />
-                  <Text>{datalist.feature["rooms"]}</Text>
-                </View>
-              </View>
-            </View>
-            <View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Location width={30} height={25} />
-                <Text>{datalist.Address}</Text>
-              </View>
             </View>
           </View>
         </Pressable>
@@ -92,6 +77,6 @@ const card = () => {
   );
 };
 
-export default card;
+export default discoveryCard;
 
 const styles = StyleSheet.create({});
