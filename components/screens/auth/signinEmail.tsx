@@ -12,22 +12,11 @@ export default function SigninEmail() {
         <Text
           style={{
             fontFamily: "GExtraBold",
-            fontSize: 25,
-            textTransform: "capitalize",
-            paddingVertical: 30,
-          }}
-        >
-          Login
-        </Text>
-        <Text
-          style={{
-            fontFamily: "GExtraBold",
-            fontSize: 35,
+            fontSize: 45,
             textTransform: "capitalize",
           }}
         >
-          Welcome back {"name"}
-          {/* name => from shared preferences  */}
+          Welcome back,
         </Text>
         <Text
           style={{ paddingVertical: 10, fontFamily: "GMedium", fontSize: 18 }}
@@ -49,10 +38,7 @@ export default function SigninEmail() {
               paddingVertical: 10,
             }}
           >
-            <BouncyCheckbox
-              size={17}
-              fillColor="gray"
-            />
+            <BouncyCheckbox size={17} fillColor="gray" />
             <Text style={styles.remember}>Remember me</Text>
           </View>
         }

@@ -13,7 +13,7 @@ export default StyleSheet.create({
   blue: {
     color: "#060d11",
   },
-  red: {
+  warning: {
     color: "red",
     fontSize: 14,
     fontFamily: "GSemiBold",
@@ -46,9 +46,5 @@ export default StyleSheet.create({
   login_bg: {
     backgroundColor: "black",
     width: "100%",
-  },
-  account: {
-    fontFamily: "GSemiBold",
-    fontSize: 18,
   },
 });

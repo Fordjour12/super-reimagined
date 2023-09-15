@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Index from "./components/screens";
 import SignIn from "./components/screens/auth/signin";
-import SigninEmail from "./components/screens/auth/signinEmail";
+import SignInEmail from "./components/screens/auth/signinEmail";
 import SignUp from "./components/screens/auth/signup";
 import SignupEmail from "./components/screens/auth/signupEmail";
 import { AuthenticationProvider } from "./context/authContext/auth.context";
@@ -21,8 +21,13 @@ export const Layout = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="SignIn"
-          screenOptions={{ headerShown: false, animation: "none" }}
+          initialRouteName="SignUpEmail"
+          screenOptions={{
+            headerShown: false,
+            animation: "fade",
+            animationTypeForReplace: "push",
+            animationDuration: 50,
+          }}
         >
           {currentUser ? (
             <Stack.Screen name="Index" component={Index} />
@@ -30,8 +35,30 @@ export const Layout = () => {
             <Stack.Group>
               <Stack.Screen name="SignIn" component={SignIn} />
               <Stack.Screen name="SignUp" component={SignUp} />
-              <Stack.Screen name="SignInEmail" component={SigninEmail} />
-              <Stack.Screen name="SignUpEmail" component={SignupEmail} />
+              <Stack.Screen
+                name="SignInEmail"
+                component={SignInEmail}
+                options={{
+                  headerShown: true,
+                  title: "Login",
+                  headerTitleStyle: {
+                    fontFamily: "GExtraBold",
+                    fontSize: 20,
+                  },
+                }}
+              />
+              <Stack.Screen
+                name="SignUpEmail"
+                component={SignupEmail}
+                options={{
+                  title: "Signup",
+                  headerShown: true,
+                  headerTitleStyle: {
+                    fontFamily: "GExtraBold",
+                    fontSize: 20,
+                  },
+                }}
+              />
             </Stack.Group>
           )}
         </Stack.Navigator>

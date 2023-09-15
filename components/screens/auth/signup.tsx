@@ -1,19 +1,20 @@
 import React from "react";
 import {
   ImageBackground,
+  Pressable,
   SafeAreaView,
+  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-import Email from "../../../assets/images/email-envelope-letter-message-fast-svgrepo-com.svg";
-import Facebook from "../../../assets/images/facebook-svgrepo-com.svg";
-import Google from "../../../assets/images/google-color-svgrepo-com.svg";
+import Email from "../../../assets/images/email.svg";
+import Facebook from "../../../assets/images/facebook.svg";
+import Google from "../../../assets/images/google.svg";
 import GlobalConstant from "../../constant/globalConstant";
-import AuthLayout from "../../designs/auth.layout";
-import ButtonCustom from "../../designs/button.custom";
+import Authentication from "../../layout/authentication";
+import Button from "../../ui/button";
 
-export default function Signup(Props) {
+export default function Signup({ navigation }) {
   const ImageSource = require("../../../assets/images/house-2.jpg");
   return (
     <ImageBackground source={ImageSource} style={GlobalConstant.container}>
@@ -28,46 +29,41 @@ export default function Signup(Props) {
           </View>
         </SafeAreaView>
 
-        {/* auth layout */}
-        <AuthLayout
-          text={""}
+        {/* New Authentication flow */}
+
+        <Authentication
           children={
             <>
-              <View style={{ width: "100%" }}>
-                <ButtonCustom
-                  text="Sign up with Facebook"
-                  btnColor={GlobalConstant.facebook}
-                  icons={<Facebook width={40} height={30} />}
+              <View>
+                <Button
+                  text="SignUp with Facebook"
+                  btnStyle={GlobalConstant.facebook}
+                  icon={<Facebook width={40} height={30} />}
                 />
-                <ButtonCustom
-                  text="Sign up with Google"
-                  btnColor={GlobalConstant.google}
-                  icons={<Google width={40} height={30} />}
+                <Button
+                  text="SignUp with Google"
+                  btnStyle={GlobalConstant.google}
+                  icon={<Google width={40} height={30} />}
                 />
-                <ButtonCustom
-                  text="continue with Email"
-                  btnColor={GlobalConstant.email}
-                  icons={<Email width={40} height={30} />}
-                  onPress={() => Props.navigation.navigate("SignUpEmail")}
-                />
+                <View style={{ width: "100%" }}>
+                  <Button
+                    text="Continue with Email"
+                    btnStyle={GlobalConstant.login_bg}
+                    icon={<Email width={40} height={30} />}
+                    onPress={() => navigation.navigate("SignUpEmail")}
+                  />
+                </View>
               </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+
+              <Pressable
+                onPress={() => navigation.navigate("SignIn")}
+                style={styles.accountSignUp}
               >
-                <Text style={GlobalConstant.account}>Have an Account? </Text>
-                <TouchableOpacity
-                  onPress={() => Props.navigation.navigate("SignIn")}
-                  delayPressIn={0}
-                >
-                  <Text style={[GlobalConstant.account, GlobalConstant.blue]}>
-                    Sign In
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                <Text style={styles.account}>Have an Account? </Text>
+                <Text style={[styles.account, GlobalConstant.blue]}>
+                  Sign In
+                </Text>
+              </Pressable>
             </>
           }
         />
@@ -75,3 +71,16 @@ export default function Signup(Props) {
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  accountSignUp: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 20,
+  },
+  account: {
+    fontFamily: "GSemiBold",
+    fontSize: 18,
+  },
+});
