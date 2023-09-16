@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useAuthContext } from "../../../context/authContext/createAuth.context";
 import FormLayout from "../../designs/form.layout";
+import Button from "../../ui/button";
 
 export default function SigninEmail() {
   const { onLogin } = useAuthContext();
@@ -41,6 +42,9 @@ export default function SigninEmail() {
             <BouncyCheckbox size={17} fillColor="gray" />
             <Text style={styles.remember}>Remember me</Text>
           </View>
+
+
+
         }
       />
     </View>
