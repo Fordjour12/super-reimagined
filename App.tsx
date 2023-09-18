@@ -21,7 +21,7 @@ export const Layout = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="SignUpEmail"
+          initialRouteName="SignIn"
           screenOptions={{
             headerShown: false,
             animation: "fade",
