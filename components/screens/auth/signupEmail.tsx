@@ -17,7 +17,7 @@ export default function SignupEmail() {
   const handelFormSubmit = () => {
     if (isChecked === false) {
       // alert("must be checked checkbox");
-      Alert.alert("Alert Title", "My Alert Msg", [
+      Alert.alert("Alert Title", "You must agree to the Privacy and Polices", [
         {
           text: "Ask me later",
           onPress: () => console.log("Ask me later pressed"),
@@ -29,7 +29,7 @@ export default function SignupEmail() {
         },
       ]);
     } else {
-      console.info("first");
+      (email: string, password: string) => onRegister(email, password);
     }
   };
 
