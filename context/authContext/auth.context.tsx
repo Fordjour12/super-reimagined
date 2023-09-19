@@ -2,7 +2,6 @@ import {
   User,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -48,9 +47,9 @@ const AuthenticationProvider = ({ children }) => {
       );
       console.log(response.user);
 
-      if (response.user.emailVerified === false) {
-        sendEmailVerification(response.user);
-      }
+      // if (response.user.emailVerified === false) {
+      //   sendEmailVerification(response.user);
+      // }
       const data = await setDoc(doc(db, "users", response.user.uid), {
         data: JSON.stringify(response.user),
       });

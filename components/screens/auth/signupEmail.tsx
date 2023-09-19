@@ -15,21 +15,25 @@ export default function SignupEmail() {
   };
 
   const handelFormSubmit = () => {
-    if (isChecked === false) {
+    if (isChecked === true) {
       // alert("must be checked checkbox");
-      Alert.alert("Alert Title", "You must agree to the Privacy and Polices", [
-        {
-          text: "Ask me later",
-          onPress: () => console.log("Ask me later pressed"),
-        },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-      ]);
+      Alert.alert(
+        "Privacy & Polices",
+        "You must agree to the Privacy and Polices",
+        [
+          {
+            text: "Ask me later",
+            onPress: () => console.log("Ask me later pressed"),
+          },
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+        ]
+      );
     } else {
-      (email: string, password: string) => onRegister(email, password);
+      setIsLoading(!isLoading);
     }
   };
 
@@ -44,7 +48,10 @@ export default function SignupEmail() {
         </Text>
       </View>
       <Form
-        onSubmit={() => handelFormSubmit()}
+        onSubmit={(value: { email: string; password: string }) => {
+          handelFormSubmit();
+          onRegister(value.email, value.password);
+        }}
         loadingState={isLoading}
         children={
           <>

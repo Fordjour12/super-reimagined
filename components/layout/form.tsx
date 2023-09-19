@@ -9,7 +9,7 @@ import Input from "../ui/input";
 
 type FormLayout = {
   children: ReactElement;
-  onSubmit: () => any;
+  onSubmit: any
   loadingState: boolean;
 };
 
