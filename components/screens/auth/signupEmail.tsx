@@ -41,9 +41,7 @@ export default function SignupEmail() {
     <View style={styles.container}>
       <View style={{ alignItems: "center" }}>
         <Text style={styles.Info}>Hello Welcome,</Text>
-        <Text
-          style={{ paddingVertical: 10, fontFamily: "GMedium", fontSize: 18 }}
-        >
+        <Text style={styles.sub_info}>
           Please enter your detail to create your account
         </Text>
       </View>
@@ -97,5 +95,10 @@ const styles = StyleSheet.create({
   },
   checked_n: {
     backgroundColor: "red",
+  },
+  sub_info: {
+    paddingVertical: 10,
+    fontFamily: "GMedium",
+    fontSize: 18,
   },
 });

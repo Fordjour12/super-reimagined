@@ -1,63 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useAuthContext } from "../../../context/authContext/createAuth.context";
-import FormLayout from "../../designs/form.layout";
-import Button from "../../ui/button";
+import Form from "../../layout/form";
 
 export default function SigninEmail() {
   const { onLogin } = useAuthContext();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <View style={{ justifyContent: "flex-start" }}>
-        <Text
-          style={{
-            fontFamily: "GExtraBold",
-            fontSize: 45,
-            textTransform: "capitalize",
-          }}
-        >
-          Welcome back,
-        </Text>
-        <Text
-          style={{ paddingVertical: 10, fontFamily: "GMedium", fontSize: 18 }}
-        >
+    <View style={styles.container}>
+      <View style={{ alignItems: "center" }}>
+        <Text style={styles.Info}>Welcome back,</Text>
+        <Text style={styles.sub_info}>
           Please enter your detail to access your account
         </Text>
       </View>
 
-      <FormLayout
-        onSubmit={(value: { email: string; password: string }) =>
-          onLogin(value.email, value.password).catch((error) =>
-            console.log(error)
-          )
-        }
+      <Form
+        onSubmit={(value: { email: string; password: string }) => {
+          setIsLoading(!isLoading);
+          onLogin(value.email, value.password);
+        }}
+        loadingState={isLoading}
         children={
-          <View
-            style={{
-              flexDirection: "row",
-              paddingVertical: 10,
-            }}
-          >
-            <BouncyCheckbox size={17} fillColor="gray" />
-            <Text style={styles.remember}>Remember me</Text>
-          </View>
-
-
-
+          <View style={{ flexDirection: "row", paddingVertical: 16 }} />
         }
       />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-  form: {
+  container: {
     width: "100%",
-    paddingHorizontal: 16,
+    height: "100%",
+    justifyContent: "center",
   },
-  remember: {
-    color: "hsl(0,0%,0%)",
+  Info: {
+    fontFamily: "GExtraBold",
+    fontSize: 45,
+    textTransform: "capitalize",
+  },
+  sub_info: {
+    paddingVertical: 10,
     fontFamily: "GMedium",
-    fontSize: 17,
+    fontSize: 18,
   },
 });

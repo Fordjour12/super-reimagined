@@ -32,7 +32,9 @@ const AuthenticationProvider = ({ children }) => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response.user);
 
-      // if(response.user.providerData.)
+      if (response.user == null) {
+        alert("User does not exit ");
+      }
     } catch (error) {
       console.log(error);
     }
