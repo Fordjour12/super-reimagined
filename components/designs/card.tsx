@@ -5,17 +5,20 @@ import Bed from "../../assets/images/bed.svg";
 import Location from "../../assets/images/location-pin.svg";
 import Shower from "../../assets/images/shower.svg";
 
-type Card = {
+export type CardType = {
+  id: string;
   Price: string;
+  Name?: string;
   Address: string;
   "Year built": number;
   "packing slot": number;
   "Property Type": string;
-  images: {
+  Images: {
     "1": string;
     "2": string;
     "3": string;
   };
+
   Descrption: string;
   feature: {
     rooms: number;
@@ -24,10 +27,9 @@ type Card = {
   };
 };
 
-const card = () => {
+const card = ({id,ImageURL,Price,PropertyType,Shower,Room,Address}) => {
   return (
-    <View style={{ marginVertical: 10 }}>
-      {data.map((datalist) => (
+    <View style={{ marginVertical: 10 }} key={id}>
         <Pressable onPress={() => console.log("Apartment pressed")}>
           <Image
             style={{
@@ -37,16 +39,16 @@ const card = () => {
               objectFit: "contain",
             }}
             source={{
-              uri: datalist.images[4],
+              uri: ImageURL,
             }}
             // width={40}
             height={250}
           />
           <View>
             <View style={{ flexDirection: "row" }}>
-              <Text>{datalist.Price}/year</Text>
+              <Text>{Price}/year</Text>
               <Text style={{ marginHorizontal: 3 }}>|</Text>
-              <Text>{datalist["Property Type"]}</Text>
+              <Text>{PropertyType}</Text>
             </View>
           </View>
           <View>
@@ -57,9 +59,9 @@ const card = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ fontFamily: "GBold", fontSize: 25 }}>
-                {datalist.Name}
-              </Text>
+              {/* <Text style={{ fontFamily: "GBold", fontSize: 25 }}>
+                {Name}
+              </Text> */}
 
               <View style={{ flexDirection: "row" }}>
                 <View
@@ -70,24 +72,23 @@ const card = () => {
                   }}
                 >
                   <Shower width={30} height={25} />
-                  <Text>{datalist.feature["shower"]}</Text>
+                  <Text>{Shower}</Text>
                 </View>
 
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Bed width={25} height={25} />
-                  <Text>{datalist.feature["rooms"]}</Text>
+                  <Text>{Room}</Text>
                 </View>
               </View>
             </View>
             <View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Location width={30} height={25} />
-                <Text>{datalist.Address}</Text>
+                <Text>{Address}</Text>
               </View>
             </View>
           </View>
         </Pressable>
-      ))}
     </View>
   );
 };
