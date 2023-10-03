@@ -15,7 +15,7 @@ interface AuthDesign {
 export default function AuthLayout(Props: AuthDesign) {
   return (
     <View style={styles.authContainer}>
-      <View style={{  alignItems: "center" }}>
+      <View style={{ alignItems: "center" }}>
         <View style={styles.divider} />
         {Props.children}
       </View>
@@ -33,9 +33,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   divider: {
-    backgroundColor: "hsl(0,0%,0%)",
+    backgroundColor: "hsl(0,0%,20%)",
     width: 100,
-    height: 10,
     borderRadius: 50,
     marginBottom: 20,
   },

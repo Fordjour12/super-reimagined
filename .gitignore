@@ -40,3 +40,8 @@ IAM.md
 %ProgramData%/**
 pnpm-lock.*
 package-lock.*
+*.rules
+*.rules.json
+*-debug.log
+firebase.json
+.firebaserc

@@ -1,33 +1,36 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ReactElement } from "react";
+import { Platform, StyleSheet, Text, UIManager, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { validationSchema } from "../../hooks/schemaValidation";
 import globalConstant from "../constant/globalConstant";
-import ButtonCustom from "./button.custom";
-import InputCustom from "./input.custom";
+import Button from "../ui/button";
+import Input from "../ui/input";
 
-interface CustomForm {
-  children?:
-    | string
-    | number
-    | boolean
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | Iterable<React.ReactNode>
-    | React.ReactPortal;
-  onSubmit: any;
-}
+type FormLayout = {
+  children: ReactElement;
+  onSubmit: any
+  loadingState: boolean;
+};
 
-export default function FormLayout(Props: CustomForm) {
-  const [rememberMe, setRememberMe] = useState<boolean>(false);
+const form = ({ onSubmit, children, loadingState }: FormLayout) => {
+  if (
+    Platform.OS === "android" &&
+    UIManager.setLayoutAnimationEnabledExperimental
+  ) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
 
   return (
-    <View style={styles.form}>
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
+    <View>
+      <KeyboardAwareScrollView
+        keyboardShouldPersistTaps="handled"
+        style={styles.form}
+      >
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={Props.onSubmit}
+          onSubmit={onSubmit}
         >
           {({
             handleChange,
@@ -39,7 +42,7 @@ export default function FormLayout(Props: CustomForm) {
             isValid,
           }) => (
             <>
-              <InputCustom
+              <Input
                 autoComplete={"email"}
                 onBlur={handleBlur("email")}
                 onChange={handleChange("email")}
@@ -48,11 +51,12 @@ export default function FormLayout(Props: CustomForm) {
                 value={values.email}
                 keyboardType="email-address"
               />
+
               {errors.email && touched.email && (
                 <Text style={globalConstant.warning}>{errors.email}</Text>
               )}
 
-              <InputCustom
+              <Input
                 placeholder="P@55word"
                 onChange={handleChange("password")}
                 onBlur={handleBlur("password")}
@@ -64,29 +68,41 @@ export default function FormLayout(Props: CustomForm) {
               {errors.password && touched.password && (
                 <Text style={globalConstant.warning}>{errors.password}</Text>
               )}
-              {Props.children}
-              <ButtonCustom
-                btnColor={globalConstant.email}
-                text="submit"
-                disabled={!isValid}
-                onPress={() => handleSubmit()}
-              />
+
+              {children}
+
+              {isValid ? (
+                <Button
+                  btnStyle={globalConstant.email}
+                  text="submit"
+                  loading={loadingState}
+                  onPress={() => handleSubmit()}
+                  disabled={!isValid}
+                />
+              ) : (
+                <Button
+                  btnStyle={styles.gray}
+                  text="submit"
+                  onPress={() => handleSubmit()}
+                  disabled={isValid}
+                />
+              )}
             </>
           )}
         </Formik>
       </KeyboardAwareScrollView>
     </View>
   );
-}
+};
+
+export default form;
 
 const styles = StyleSheet.create({
   form: {
-    width: "100%",
     paddingHorizontal: 16,
+    width: "100%",
   },
-  remember: {
-    color: "hsl(0,0%,0%)",
-    fontFamily: "GMedium",
-    fontSize: 17,
+  gray: {
+    backgroundColor: "hsl(0,0%,20%)",
   },
 });

@@ -1,8 +1,10 @@
 import {
+  Auth,
   User,
+  browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  sendEmailVerification,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -15,11 +17,24 @@ const AuthenticationProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const auth = FirebaseAuth;
+  const auth: Auth = FirebaseAuth;
   const db = Firebase_db;
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, async (user) => {
+  //     return setPersistence(auth, browserLocalPersistence);
+  //     // setLoading(true);
+  //     if (user) {
+  //       setCurrentUser(user)
+  //     } else {
+  //       setCurrentUser(null);
+  //     }
+  //   })
+
+  //   });
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      // setLoading(true);
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         setCurrentUser(user);
       } else {
@@ -33,7 +48,9 @@ const AuthenticationProvider = ({ children }) => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response.user);
 
-      // if(response.user.providerData.)
+      if (response.user == null) {
+        alert("User does not exit ");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -48,9 +65,9 @@ const AuthenticationProvider = ({ children }) => {
       );
       console.log(response.user);
 
-      if (response.user.emailVerified === false) {
-        sendEmailVerification(response.user);
-      }
+      // if (response.user.emailVerified === false) {
+      //   sendEmailVerification(response.user);
+      // }
       const data = await setDoc(doc(db, "users", response.user.uid), {
         data: JSON.stringify(response.user),
       });
