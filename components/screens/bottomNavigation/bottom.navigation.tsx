@@ -16,7 +16,7 @@ const BottomNavigation = createBottomTabNavigator();
 const BottomTab = () => {
     return (
         <BottomNavigation.Navigator
-            initialRouteName="homepage"
+            initialRouteName="discovery"
             screenOptions={{
                 tabBarActiveBackgroundColor: "hsla(100,100%,10%,0.5)",
                 tabBarShowLabel: false,
